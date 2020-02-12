@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Notifications\Grpc.Dotnet.Notifications.RpcApi\Grpc.Dotnet.Notifications.RpcApi.csproj" />
+    <ProjectReference Include="..\..\Permissions\Grpc.Dotnet.Permissions.RpcApi\Grpc.Dotnet.Permissions.RpcApi.csproj" />
+    <ProjectReference Include="..\..\Shared\Helpers\Grpc.Dotnet.Shared.Helpers.csproj" />
+  </ItemGroup>
+
+</Project>

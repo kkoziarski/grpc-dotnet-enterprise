@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+
+package grpc.dotnet.permissions.v1;
+
+service PermissionsService {
+	rpc IsUserAllowed(IsUserAllowedRequest) returns (IsUserAllowedResponse) {}
+	rpc GetUserPermissions(UserPermissionsRequest) returns (UserPermissionsResponse) {}
+}
+
+message IsUserAllowedRequest {
+	string user_id = 1;
+	string permission = 2;
+}
+
+message IsUserAllowedResponse {
+	bool is_allowed = 1;
+}
+
+message UserPermissionsRequest {
+	string user_id = 1;
+}
+
+message UserPermissionsResponse {
+	repeated string permissions = 1;
+}
