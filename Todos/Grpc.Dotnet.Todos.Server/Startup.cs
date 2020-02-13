@@ -50,7 +50,7 @@ namespace Grpc.Dotnet.Todos.Server
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<GreeterServiceV1>();
 
                 endpoints.MapGet("/", async context =>
                 {

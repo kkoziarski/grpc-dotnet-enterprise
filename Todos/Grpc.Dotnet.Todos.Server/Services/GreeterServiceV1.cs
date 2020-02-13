@@ -1,13 +1,14 @@
 using System.Threading.Tasks;
 using Grpc.Core;
+using Grpc.Dotnet.Todos.Server.V1;
 using Microsoft.Extensions.Logging;
 
 namespace Grpc.Dotnet.Todos.Server
 {
-    public class GreeterService : Greeter.GreeterBase
+    public class GreeterServiceV1 : Greeter.GreeterBase
     {
-        private readonly ILogger<GreeterService> _logger;
-        public GreeterService(ILogger<GreeterService> logger)
+        private readonly ILogger<GreeterServiceV1> _logger;
+        public GreeterServiceV1(ILogger<GreeterServiceV1> logger)
         {
             _logger = logger;
         }
