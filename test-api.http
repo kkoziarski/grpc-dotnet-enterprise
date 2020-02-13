@@ -15,10 +15,13 @@ POST {{url}}/api/todos HTTP/1.1
 content-type: application/json
 
 {
-  "Name":"todo 1",
-  "IsComplete": true
+  "UserId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  "Name":"todo 2",
+  "IsComplete": false
 }
 
 
 ###
 DELETE {{url}}/api/todos/2 HTTP/1.1
+content-type: application/json
+user-id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Grpc.Dotnet.Todos.Domain.Commands;
 using Grpc.Dotnet.Todos.Domain.Queries;
@@ -48,9 +49,9 @@ namespace Grpc.Dotnet.Todos
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> Delete([FromRoute]long id, [FromHeader(Name = "user-id")]Guid? userId)
         {
-            await mediator.Send(new DeleteTodoCommand { Id = id });
+            await mediator.Send(new DeleteTodoCommand { Id = id, UserId = userId });
             return Ok();
         }
     }

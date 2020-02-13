@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Grpc.Dotnet.Permissions.Domain;
 using Grpc.Dotnet.Permissions.Server.Domain.Queries;
 using MediatR;
 
@@ -13,6 +14,11 @@ namespace Grpc.Dotnet.Permissions.Server.Domain.QueryHandlers
             if (request.UserId == Guid.Empty || request.UserId == default(Guid))
             {
                 return Task.FromResult(false);
+            }
+
+            if (request.UserId == DomainModule.AdminId)
+            {
+                return Task.FromResult(true);
             }
 
             // TODO: query database here
