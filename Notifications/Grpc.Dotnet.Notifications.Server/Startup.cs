@@ -1,20 +1,15 @@
-using Grpc.Dotnet.Todos.Domain;
+﻿using Autofac;
+using AutoMapper;
+using Grpc.Dotnet.Notifications.Domain;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using MediatR;
-using AutoMapper;
-using Grpc.Dotnet.Shared.Helpers.Startup;
-using Grpc.Dotnet.Shared.Helpers.Rpc.Client;
-using Grpc.Dotnet.Notifications.V1;
-using Grpc.Dotnet.Permissions.V1;
-using Autofac;
 
-namespace Grpc.Dotnet.Todos.Api
+namespace Grpc.Dotnet.Notifications.Server
 {
     public class Startup
     {
@@ -25,26 +20,16 @@ namespace Grpc.Dotnet.Todos.Api
 
         public IConfiguration Configuration { get; }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoDbContext>(options => options.UseInMemoryDatabase("Todos"));
             services.AddMediatR(typeof(DomainModule).Assembly);
-            services.AddAutoMapper(typeof(Startup), typeof(DomainModule));
+            services.AddAutoMapper(typeof(DomainModule));
 
-            services.AddConfiguredAuthentication(this.Configuration);
-            services.AddConfiguredUserContext();
-
-            services.AddRpcClients(this.Configuration)
-                .AddClient<NotificationService.NotificationServiceClient>()
-                .AddClient<PermissionsService.PermissionsServiceClient>();
-
-            services.AddMvc();
+            ////services.AddGrpc(); // this is configured in Program.cs
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new ApiModule());
             builder.RegisterModule(new DomainModule());
         }
 
@@ -53,23 +38,21 @@ namespace Grpc.Dotnet.Todos.Api
         {
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
             if (env.IsDevelopment())
             {
                 mapper.ConfigurationProvider.AssertConfigurationIsValid();
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<NotificationServiceV1>();
+
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
                 });
-                endpoints.MapControllers(); // Map attribute-routed API controllers
-                endpoints.MapDefaultControllerRoute(); // Map conventional MVC controllers using the default route
             });
         }
     }
