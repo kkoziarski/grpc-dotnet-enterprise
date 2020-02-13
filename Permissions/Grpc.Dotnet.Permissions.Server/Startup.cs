@@ -23,7 +23,7 @@ namespace Grpc.Dotnet.Permissions.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup).Assembly);
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(DomainModule));
             ////services.AddGrpc(); // this is configured in Program.cs
         }
 

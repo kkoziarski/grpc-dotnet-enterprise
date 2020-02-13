@@ -2,6 +2,11 @@
 
 package grpc.dotnet.permissions.v1;
 
+
+//option csharp_namespace = "Grpc.Dotnet.Permissions.V1";
+
+//package Permissions;
+
 service PermissionsService {
 	rpc IsUserAllowed(IsUserAllowedRequest) returns (IsUserAllowedResponse) {}
 	rpc GetUserPermissions(UserPermissionsRequest) returns (UserPermissionsResponse) {}
