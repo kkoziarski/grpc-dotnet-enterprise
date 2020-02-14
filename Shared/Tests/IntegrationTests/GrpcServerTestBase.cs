@@ -7,17 +7,17 @@ using Xunit;
 
 namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 {
-    public class WorkerTestBase<TStartup, TContext, TFactory, TServiceClient> : IClassFixture<TFactory>
+    public class GrpcServerTestBase<TStartup, TContext, TFactory, TServiceClient> : IClassFixture<TFactory>
         where TStartup : class
         where TContext : DbContext
-        where TFactory : WorkerApplicationFactoryBase<TStartup, TContext>
+        where TFactory : GrpcServerApplicationFactoryBase<TStartup, TContext>
         where TServiceClient : ClientBase<TServiceClient>
     {
         protected TServiceClient Client { get; }
 
         public TContext DbContext { get; }
 
-        public WorkerTestBase(TFactory factory)
+        public GrpcServerTestBase(TFactory factory)
         {
 
             factory.MigrateTestDbAndSeed();

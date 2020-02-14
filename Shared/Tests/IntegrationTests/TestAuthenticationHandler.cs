@@ -12,11 +12,11 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
     {
         private readonly UserContextMock userContext;
 
-        public TestAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, 
+        public TestAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IConfiguration configuration)
             : base(options, logger, encoder, clock)
         {
-            this.userContext = new UserContextMock(configuration); 
+            this.userContext = new UserContextMock(configuration);
         }
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()

@@ -5,7 +5,7 @@ using Moq;
 
 namespace Grpc.Dotnet.Shared.Helpers.UnitTests.Helpers
 {
-    
+
     public class RpcClientMock<TClient> where TClient : ClientBase<TClient>
     {
         public RpcClientMock()

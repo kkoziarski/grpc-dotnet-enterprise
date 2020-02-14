@@ -13,14 +13,14 @@ using Microsoft.Extensions.Hosting;
 
 namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 {
-    public class WorkerApplicationFactoryBase<TStartup, TContext> : WebApplicationFactory<TStartup>
+    public class GrpcServerApplicationFactoryBase<TStartup, TContext> : WebApplicationFactory<TStartup>
         where TStartup : class
         where TContext : DbContext
     {
-        
+
         private static bool dbCreated;
         private static object lockDbCreated = new object();
-        
+
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             var projectDir = Directory.GetCurrentDirectory();
@@ -36,7 +36,7 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
             builder.ConfigureTestServices(services =>
             {
                 services.AddAuthentication(UserContextMock.AuthenticationSchemeType)
-                    .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(UserContextMock.AuthenticationSchemeType, options => {});
+                    .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(UserContextMock.AuthenticationSchemeType, options => { });
 
                 services.AddScoped<IUserContext, UserContextMock>(uc =>
                 {
@@ -50,7 +50,7 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
                 this.ConfigureTestServices(builder, services);
             });
         }
-        
+
         protected virtual void ConfigureTestServices(IWebHostBuilder builder, IServiceCollection servicesConfiguration)
         {
         }

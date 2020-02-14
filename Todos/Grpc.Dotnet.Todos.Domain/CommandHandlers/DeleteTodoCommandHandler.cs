@@ -48,7 +48,7 @@ namespace Grpc.Dotnet.Todos.Domain.CommandHandlers
 
             var sendEmailReq = new SendPushRequest
             {
-                Message = new SendPushRequest.Types.Message { Text = $"Todo {request.Id} has been deleted"}
+                Message = new SendPushRequest.Types.Message { Text = $"Todo {request.Id} has been deleted" }
             };
             sendEmailReq.Recipients.Add(new SendPushRequest.Types.Recipient
             {

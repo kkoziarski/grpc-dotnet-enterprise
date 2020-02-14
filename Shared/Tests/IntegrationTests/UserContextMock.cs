@@ -12,11 +12,11 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
         private const string IntegrationFullName = "Integration Test User";
         private const string IntegrationEmail = "integration@test.user";
 
-        public UserContextMock(IConfiguration configuration) 
+        public UserContextMock(IConfiguration configuration)
             : base(
-                configuration.GetValue<string>("User:userName", IntegrationUserName), 
-                configuration.GetValue<Guid>("User:userId", Guid.Parse(Identity)), 
-                configuration.GetValue<string>("User:fullName", IntegrationFullName), 
+                configuration.GetValue<string>("User:userName", IntegrationUserName),
+                configuration.GetValue<Guid>("User:userId", Guid.Parse(Identity)),
+                configuration.GetValue<string>("User:fullName", IntegrationFullName),
                 configuration.GetValue<string>("User:email", IntegrationEmail))
 
         {

@@ -18,7 +18,7 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
     {
         protected override IHostBuilder CreateHostBuilder()
         {
-            var builder =  base.CreateHostBuilder();
+            var builder = base.CreateHostBuilder();
             return builder;
         }
 
@@ -36,7 +36,7 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
             builder.ConfigureTestServices(services =>
             {
                 services.AddAuthentication(UserContextMock.AuthenticationSchemeType)
-                    .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(UserContextMock.AuthenticationSchemeType, options => {});
+                    .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(UserContextMock.AuthenticationSchemeType, options => { });
 
                 services.AddScoped<IUserContext, UserContextMock>(uc =>
                 {
