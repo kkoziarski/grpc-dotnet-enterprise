@@ -1,21 +1,25 @@
 ﻿#File created for REST Client in VS Code https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 #REST Client allows you to send HTTP request and view the response in Visual Studio Code directly.
 
-#auth:jwt:AudienceId
 @url = http://localhost:5000
+@userId = ae824338-19d5-4b6b-bc27-38fbd28dd1f3
+@userAdminId = aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+
 
 ###
 GET {{url}}/api/todos HTTP/1.1
+user-id: {{userId}}
 
 ###
 GET {{url}}/api/todos/2 HTTP/1.1
+user-id: {{userId}}
 
 ###
 POST {{url}}/api/todos HTTP/1.1
 content-type: application/json
+user-id: {{userAdminId}}
 
 {
-  "UserId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
   "Name":"todo 2",
   "IsComplete": false
 }
@@ -24,4 +28,4 @@ content-type: application/json
 ###
 DELETE {{url}}/api/todos/2 HTTP/1.1
 content-type: application/json
-user-id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+user-id: {{userAdminId}}

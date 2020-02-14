@@ -5,6 +5,7 @@ using Grpc.Dotnet.Todos.Domain.Commands;
 using Grpc.Dotnet.Todos.Domain.Queries;
 using Grpc.Dotnet.Todos.Domain.Result;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
@@ -22,18 +23,18 @@ namespace Grpc.Dotnet.Todos
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TodoResult>>> GetAll()
+        public async Task<ActionResult<List<TodoResult>>> GetAll([FromHeader(Name = "user-id")]Guid? userId)
         {
 
-            var todos = await mediator.Send(new AllTodosQuery());
+            var todos = await mediator.Send(new AllTodosQuery { UserId = userId });
 
             return todos;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoResult>> Get(long id)
+        public async Task<ActionResult<TodoResult>> Get(long id, [FromHeader(Name = "user-id")]Guid? userId)
         {
-            var todo = await mediator.Send(new TodoDetailsQuery { Id = id });
+            var todo = await mediator.Send(new TodoDetailsQuery { Id = id, UserId = userId });
             if (todo == null)
             {
                 return NotFound();
@@ -43,13 +44,15 @@ namespace Grpc.Dotnet.Todos
         }
 
         [HttpPost]
-        public async Task Post(CreateTodoCommand command)
+        public async Task<IActionResult> Post(CreateTodoCommand command, [FromHeader(Name = "user-id")]Guid userId)
         {
+            command.UserId = userId;
             await mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute]long id, [FromHeader(Name = "user-id")]Guid? userId)
+        public async Task<IActionResult> Delete(long id, [FromHeader(Name = "user-id")]Guid? userId)
         {
             await mediator.Send(new DeleteTodoCommand { Id = id, UserId = userId });
             return Ok();
