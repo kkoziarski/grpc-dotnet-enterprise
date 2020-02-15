@@ -30,7 +30,7 @@ namespace Grpc.Dotnet.Todos.Domain.QueryHandlers
 
         public async Task<TodoResult> Handle(TodoDetailsQuery request, CancellationToken cancellationToken)
         {
-            var isUserAllowedReq = new IsUserAllowedRequest { Permission = "READ_TODO", UserId = request.UserId?.ToString() };
+            var isUserAllowedReq = new IsUserAllowedRequest { Permission = "READ_TODO", UserId = request.UserId?.ToString() ?? string.Empty };
             var isUserAllowedRes = permissionsClient.Execute<IsUserAllowedRequest, IsUserAllowedResponse>(c => c.IsUserAllowed, isUserAllowedReq);
 
             if (isUserAllowedRes.IsAllowed == false)

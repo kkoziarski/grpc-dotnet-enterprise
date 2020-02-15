@@ -1,4 +1,6 @@
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Grpc.Dotnet.Notifications.V1;
@@ -9,6 +11,7 @@ using Moq;
 using Xunit;
 using Xunit.Abstractions;
 using Shouldly;
+using Grpc.Dotnet.Todos.Domain.Result;
 
 namespace Grpc.Dotnet.Todos.Api.IntegrationTests
 {
@@ -70,6 +73,36 @@ namespace Grpc.Dotnet.Todos.Api.IntegrationTests
 
             GetRpcClientMock<NotificationService.NotificationServiceClient>()
                 .EnsureAllRequestsCount(0);
+        }
+
+        [Fact]
+        public async Task Get_WhenCall_ShouldReturn200Code()
+        {
+            //Arrange
+            using var client = this.CreateClient();
+
+            this.DbContext.Todos.AddRange(new Todo[]
+            {
+                new Todo { Id = 1, Name = "todo 1" },
+                new Todo { Id = 2, Name = "todo 2" }
+            });
+            this.DbContext.SaveChanges();
+
+            var rpcPermissionsClientMock = GetRpcClientMock<PermissionsService.PermissionsServiceClient>();
+            rpcPermissionsClientMock.SetMock(this.rpcPermissionsMock.Object);
+
+            //Act
+            var response = await client.GetAsync($"api/todos/{2}");
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
+
+            var resultString = await response.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<TodoResult>(resultString, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+
+            result.Id.ShouldBe(2);
+            result.Name.ShouldBe("todo 2");
         }
     }
 }
