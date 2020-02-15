@@ -22,7 +22,6 @@ namespace Grpc.Dotnet.Todos.Domain.UnitTests
 
         public TodoDetailsQueryHandlerTests()
         {
-
             this.rpcPermissionsMock = new RpcClientMock<PermissionsService.PermissionsServiceClient>();
             var configuration = new MapperConfiguration(cfg =>
             {

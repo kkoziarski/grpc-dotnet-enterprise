@@ -25,7 +25,6 @@ namespace Grpc.Dotnet.Todos
         [HttpGet]
         public async Task<ActionResult<List<TodoResult>>> GetAll([FromHeader(Name = "user-id")]Guid? userId)
         {
-
             var todos = await mediator.Send(new AllTodosQuery { UserId = userId });
 
             return todos;

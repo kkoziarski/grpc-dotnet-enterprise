@@ -22,7 +22,6 @@ namespace Grpc.Dotnet.Todos.Domain.UnitTests
 
         public DeleteTodoCommandHandlerTests()
         {
-
             this.rpcPermissionsMock = new RpcClientMock<PermissionsService.PermissionsServiceClient>();
             this.rpcNotificationsMock = new RpcClientMock<NotificationService.NotificationServiceClient>();
 

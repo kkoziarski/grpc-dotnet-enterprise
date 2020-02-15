@@ -25,7 +25,6 @@ namespace Grpc.Dotnet.Todos.Api
 
         public IConfiguration Configuration { get; }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoDbContext>(options => options.UseInMemoryDatabase("Todos"));

@@ -43,7 +43,6 @@ namespace Grpc.Dotnet.Permissions.Server
                 app.UseDeveloperExceptionPage();
             }
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<PermissionsServiceV1>();

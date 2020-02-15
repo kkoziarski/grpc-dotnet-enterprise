@@ -24,7 +24,6 @@ namespace Grpc.Dotnet.Todos.Domain.UnitTests
 
         public CreateTodoCommandHandlerTests()
         {
-
             this.rpcPermissionsMock = new RpcClientMock<PermissionsService.PermissionsServiceClient>();
             this.rpcNotificationsMock = new RpcClientMock<NotificationService.NotificationServiceClient>();
             var configuration = new MapperConfiguration(cfg =>

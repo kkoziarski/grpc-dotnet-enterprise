@@ -7,7 +7,6 @@ namespace Grpc.Dotnet.Todos.Server.IntegrationTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

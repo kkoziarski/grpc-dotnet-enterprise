@@ -47,7 +47,6 @@ namespace Grpc.Dotnet.Todos.Server
                 app.UseDeveloperExceptionPage();
             }
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterServiceV1>();

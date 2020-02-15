@@ -17,7 +17,6 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
         where TStartup : class
         where TContext : DbContext
     {
-
         private static bool dbCreated;
         private static object lockDbCreated = new object();
 

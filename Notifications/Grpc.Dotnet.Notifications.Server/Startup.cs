@@ -44,7 +44,6 @@ namespace Grpc.Dotnet.Notifications.Server
                 app.UseDeveloperExceptionPage();
             }
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<NotificationServiceV1>();

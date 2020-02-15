@@ -16,7 +16,6 @@ namespace Grpc.Dotnet.Shared.Helpers.Exceptions
             EntityId = entityId;
         }
 
-
         public string EntityName { get; private set; }
 
         public string EntityId { get; private set; }

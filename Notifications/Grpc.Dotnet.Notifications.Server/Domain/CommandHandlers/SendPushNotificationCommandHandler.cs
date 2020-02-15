@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Grpc.Dotnet.Notifications.Server.Domain.CommandHandlers
 {
-
     public class SendPushNotificationCommandHandler : IRequestHandler<SendPushNotificationCommand, Unit>
     {
         private readonly ILogger<SendPushNotificationCommandHandler> logger;
@@ -22,5 +21,4 @@ namespace Grpc.Dotnet.Notifications.Server.Domain.CommandHandlers
             return Task.FromResult(Unit.Value);
         }
     }
-
 }
