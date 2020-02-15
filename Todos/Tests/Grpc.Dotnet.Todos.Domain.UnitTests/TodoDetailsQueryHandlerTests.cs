@@ -92,10 +92,7 @@ namespace Grpc.Dotnet.Todos.Domain.UnitTests
                 context.Todos.Add(new Todo { Id = 1, Name = "todo 1" });
                 context.Todos.Add(new Todo { Id = 2, Name = "todo 2" });
                 context.SaveChanges();
-            }
 
-            using (var context = new TodoDbContext(dbOptions))
-            {
                 var sut = new TodoDetailsQueryHandler(context, mapper, rpcPermissionsMock.ServiceClient);
                 // Act
                 var result = await sut.Handle(request, new CancellationToken(false));

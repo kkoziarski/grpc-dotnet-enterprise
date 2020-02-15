@@ -100,13 +100,8 @@ namespace Grpc.Dotnet.Todos.Domain.UnitTests
 
                 // Assert
                 todoId.ShouldBeGreaterThan(0);
-            }
 
-            using (var context = new TodoDbContext(dbOptions))
-            {
                 var createdTodo = await context.Todos.FirstOrDefaultAsync(t => t.Id == todoId);
-
-                // Assert
                 createdTodo.ShouldNotBeNull();
                 createdTodo.Name.ShouldBe(command.Name);
                 createdTodo.IsComplete.ShouldBe(command.IsComplete);
