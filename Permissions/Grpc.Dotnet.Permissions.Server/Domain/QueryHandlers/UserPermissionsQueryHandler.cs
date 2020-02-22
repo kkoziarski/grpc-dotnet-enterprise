@@ -10,11 +10,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Grpc.Dotnet.Permissions.Server.Domain.QueryHandlers
 {
-    public class UserPermissionQueryHandler : IRequestHandler<UserPermissionsQuery, IEnumerable<string>>
+    public class UserPermissionsQueryHandler : IRequestHandler<UserPermissionsQuery, IEnumerable<string>>
     {
-        private readonly ILogger<UserPermissionQueryHandler> logger;
+        private readonly ILogger<UserPermissionsQueryHandler> logger;
 
-        public UserPermissionQueryHandler(ILogger<UserPermissionQueryHandler> logger)
+        public UserPermissionsQueryHandler(ILogger<UserPermissionsQueryHandler> logger)
         {
             this.logger = logger;
         }
