@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Rpc\Server\RpcServerBuilder.cs" />
-    <Compile Remove="Rpc\Server\RpcServerHostedService.cs" />
-    <Compile Remove="Rpc\Server\RpcServerServiceCollectionExtensions.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
