@@ -34,15 +34,9 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 
             builder.ConfigureTestServices(services =>
             {
-                services.AddAuthentication(UserContextMock.AuthenticationSchemeType)
-                    .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(UserContextMock.AuthenticationSchemeType, options => { });
+                services.AddAuthentication("Test")
+                    .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>("Test", options => { });
 
-                services.AddScoped<IUserContext, UserContextMock>(uc =>
-                {
-                    var configuration = uc.GetRequiredService<IConfiguration>();
-
-                    return new UserContextMock(configuration);
-                });
                 services.Replace(ServiceDescriptor.Singleton<TContext, TContext>());
 
                 services.RemoveAll<IAuthorizeService>().AddSingleton<IAuthorizeService, AuthorizeServiceMock>();

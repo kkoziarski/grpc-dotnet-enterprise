@@ -32,7 +32,6 @@ namespace Grpc.Dotnet.Todos.Api
             services.AddAutoMapper(typeof(Startup), typeof(DomainModule));
 
             services.AddConfiguredAuthentication(this.Configuration);
-            services.AddConfiguredUserContext();
 
             services.AddRpcClients(this.Configuration)
                 .AddClient<NotificationService.NotificationServiceClient>()

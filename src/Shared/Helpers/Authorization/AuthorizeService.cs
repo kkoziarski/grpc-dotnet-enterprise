@@ -8,13 +8,11 @@
     public class AuthorizeService : IAuthorizeService
     {
         private readonly IServiceClient<PermissionsService.PermissionsServiceClient> permissionsClient;
-        private readonly IUserContext userContext;
         private readonly ILogger<AuthorizeService> logger;
 
-        public AuthorizeService(IServiceClient<PermissionsService.PermissionsServiceClient> permissionsClient, IUserContext userContext, ILogger<AuthorizeService> logger)
+        public AuthorizeService(IServiceClient<PermissionsService.PermissionsServiceClient> permissionsClient, ILogger<AuthorizeService> logger)
         {
             this.permissionsClient = permissionsClient;
-            this.userContext = userContext;
             this.logger = logger;
         }
 
@@ -24,7 +22,7 @@
             {
                 var request = new IsUserAllowedRequest
                 {
-                    UserId = this.userContext.UserId.ToString(),
+                    UserId = "1db87eca-faab-402d-ac00-3e9f82a8c838", //get user id from UserContext,
                     Permission = permission
                 };
 
