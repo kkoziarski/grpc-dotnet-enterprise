@@ -1,5 +1,5 @@
 using Autofac.Extensions.DependencyInjection;
-using Grpc.Dotnet.Shared.Helpers.Startup;
+using Grpc.Dotnet.Shared.Helpers.Rpc.Server.Startup;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

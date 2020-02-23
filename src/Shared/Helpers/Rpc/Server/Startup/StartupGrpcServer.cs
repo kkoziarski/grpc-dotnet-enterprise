@@ -1,4 +1,4 @@
-﻿namespace Grpc.Dotnet.Shared.Helpers.Startup
+﻿namespace Grpc.Dotnet.Shared.Helpers.Rpc.Server.Startup
 {
     using System.Configuration;
     using Grpc.Dotnet.Shared.Helpers.Rpc.Server;
