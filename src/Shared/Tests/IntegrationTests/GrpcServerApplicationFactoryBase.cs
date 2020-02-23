@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using Grpc.Dotnet.Shared.Helpers.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -39,7 +38,6 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 
                 services.Replace(ServiceDescriptor.Singleton<TContext, TContext>());
 
-                services.RemoveAll<IAuthorizeService>().AddSingleton<IAuthorizeService, AuthorizeServiceMock>();
                 this.ConfigureTestServices(builder, services);
             });
         }

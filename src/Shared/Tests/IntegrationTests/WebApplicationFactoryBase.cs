@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Grpc.Dotnet.Shared.Helpers.Authorization;
 using Grpc.Dotnet.Shared.Helpers.Rpc.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +39,6 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 
                 services.Replace(ServiceDescriptor.Singleton<TContext, TContext>());
 
-                services.RemoveAll<IAuthorizeService>().AddSingleton<IAuthorizeService, AuthorizeServiceMock>();
                 services.AddSingleton(typeof(IServiceClient<>), typeof(ServiceClientMock<>));
             });
         }

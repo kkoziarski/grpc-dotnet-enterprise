@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MediatR;
 using AutoMapper;
-using Grpc.Dotnet.Shared.Helpers.Startup;
 using Grpc.Dotnet.Shared.Helpers.Rpc.Client;
 using Grpc.Dotnet.Notifications.V1;
 using Grpc.Dotnet.Permissions.V1;
@@ -30,8 +29,6 @@ namespace Grpc.Dotnet.Todos.Api
             services.AddDbContext<TodoDbContext>(options => options.UseInMemoryDatabase("Todos"));
             services.AddMediatR(typeof(DomainModule).Assembly);
             services.AddAutoMapper(typeof(Startup), typeof(DomainModule));
-
-            services.AddConfiguredAuthentication(this.Configuration);
 
             services.AddRpcClients(this.Configuration)
                 .AddClient<NotificationService.NotificationServiceClient>()
