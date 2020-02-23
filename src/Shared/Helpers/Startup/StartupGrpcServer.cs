@@ -31,7 +31,7 @@
                 }
 
                 options.ListenLocalhost(grpcPort, o => o.Protocols = HttpProtocols.Http2);
-                options.ListenLocalhost(grpcPort * 10, o => o.Protocols = HttpProtocols.Http1);
+                options.ListenLocalhost(grpcPort - 100, o => o.Protocols = HttpProtocols.Http1);
             });
 
             return webBuilder;
