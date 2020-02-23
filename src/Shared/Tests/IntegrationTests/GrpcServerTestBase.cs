@@ -22,7 +22,6 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 
         public GrpcServerTestBase(TFactory factory)
         {
-            factory.MigrateTestDbAndSeed();
             DbContext = factory.Services.GetRequiredService<TContext>();
 
             // FIXING

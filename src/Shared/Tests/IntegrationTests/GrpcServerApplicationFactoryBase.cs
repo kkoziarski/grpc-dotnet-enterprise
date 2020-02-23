@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -16,9 +15,6 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
         where TStartup : class
         where TContext : DbContext
     {
-        private static bool dbCreated;
-        private static object lockDbCreated = new object();
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             var projectDir = Directory.GetCurrentDirectory();
@@ -48,32 +44,6 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
 
         protected virtual void ConfigureAppConfiguration(WebHostBuilderContext context, IConfigurationBuilder configuration)
         {
-        }
-
-        public void MigrateTestDbAndSeed()
-        {
-            lock (lockDbCreated)
-            {
-                if (!dbCreated)
-                {
-                    using (var serviceScope = this.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-                    {
-                        //serviceScope.ServiceProvider.GetRequiredService<TContext>().Database.Migrate();
-                        SeedAsync(serviceScope).Wait();
-                    }
-                }
-                else
-                {
-                    dbCreated = true;
-                }
-            }
-        }
-
-        private static Task SeedAsync(IServiceScope serviceScope)
-        {
-            //var seeder = serviceScope.ServiceProvider.GetRequiredService<IDataSeeder>();
-            //await seeder.SeedAsync();
-            return Task.CompletedTask;
         }
     }
 }
