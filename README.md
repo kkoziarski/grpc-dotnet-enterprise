@@ -3,7 +3,7 @@ This project was created to demonstrate advanced implementation of .NET Core gRP
 
 It is created as a set of microsevices communicating via gRPC.
 
-The entrypoint is `Grpc.Dotnet.Todos.Api` rest API with a single `TodoController`.
+The entrypoint is `Grpc.Dotnet.Todos.Api` REST API with a single `TodoController`.
 
 ## Overview
 
