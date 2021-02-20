@@ -1,18 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <!--<ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>-->
-
   <ItemGroup>
     <None Remove="appsettings.integration.json" />
   </ItemGroup>
-
 
   <ItemGroup>
     <Content Include="appsettings.integration.json">
