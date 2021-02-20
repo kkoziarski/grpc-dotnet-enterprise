@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -31,6 +32,12 @@ namespace Grpc.Dotnet.Shared.Helpers.IntegrationTests
             {
                 services.AddAuthentication("Test")
                     .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>("Test", options => { });
+
+                var tContextServiceDescriptor = services.FirstOrDefault(s => s.ServiceType == typeof(TContext));
+                services.Remove(tContextServiceDescriptor);
+
+                var dbContextOptionsDescriptor = services.FirstOrDefault(x => x.ServiceType == typeof(DbContextOptions<TContext>));
+                services.Remove(dbContextOptionsDescriptor);
 
                 services.Replace(ServiceDescriptor.Singleton<TContext, TContext>());
 
